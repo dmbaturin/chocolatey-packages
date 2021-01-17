@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>soupault</id>
+    <version>2.4.0</version>
+    <packageSourceUrl>https://github.com/dmbaturin/chocolatey-packages/tree/main/soupault</packageSourceUrl>
+    <owners>Daniil Baturin</owners>
+    <title>soupault</title>
+    <authors>Daniil Baturin</authors>
+    <projectUrl>https://soupault.app</projectUrl>
+    <iconUrl>https://soupault.app/images/soupault_icon.png</iconUrl>
+    <copyright>2021</copyright>
+    <licenseUrl>https://github.com/dmbaturin/soupault/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/dmbaturin/soupault</projectSourceUrl>
+    <docsUrl>https://soupault.app/reference-manual</docsUrl>
+    <mailingListUrl>https://lists.sr.ht/~dmbaturin/soupault</mailingListUrl>
+    <bugTrackerUrl>https://github.com/dmbaturin/soupault/issues</bugTrackerUrl>
+    <tags>soupault</tags>
+    <summary>Static website generator based on HTML rewriting</summary>
+    <description>Soupault is a static website generator and an HTML processor.
+	Classic website generators that treat HTML as an opaque format that can only be generated with templates.
+	Soupault is more like a robotic webmaster that can automatically edit HTML.
+	Like web browsers, it can parse HTML and manipulate its element tree,
+	but it can also save it to a static page afterwards.
+	
+	Built-in functionality includes ToC, footnotes, setting the page title and more.
+	You can also run element content through external programs, e.g. pipe the content of &lt;pre&gt; tags
+	through a syntax highlighting program.
+	It can also extract metadata from pages using CSS selectors and render it using
+	a built-in template processor or an external script.
+	
+	You can extend soupault with Lua plugins that offer an API similar to the DOM API of browsers.
+	</description>
+    <releaseNotes>
+## New features
+
+* The `title` widget will not touch the `&lt;title&gt;` element if it's not empty, if you set `keep = true`
+* `force_indexing_path_regex` option in the `[index]` table allows to re-classify some index page as normal pages (i.e. metadata sources, not index injection targets)
+* `leaf_file` option in the `[index]` table allows to mark a directory as a "hand-made clean URL", e.g. with `leaf_file = ".leaf"` any directory that contains a file named `.leaf` will no longer be treated as a site section, but its `index.html` will be treated as a normal page, and all files within it will be treated as assets.
+
+### New plugin functions
+
+* `widget_config` alias for `config` (since now there's the global `soupault_config`, a more specific alias may be a good idea)
+* `build_dir` and `site_dir` variables in the plugin environment (PR by @hristoast)
+* `Table.get_key_default(table, key, default_value)`
+* Type checking functions in the new `Value` module: `is_int`, `is_float`, ``is_string`, `is_table`, `is_list` (table with all integer keys), `is_nil`.
+* `Sys.mkdir`, `Sys.get_file_modification_date`
+
+## Bug fixes
+
+* `include_subsection` option in the `[index]` table works correctly now (used to cause a spurious option validation error)
+* soupault no longer outputs duplicate newlines on Windows (#19, reported by @wilt00).
+* The `HTML.get_heading_level` function now works with nodes returned by `HTML.select` (rather than just values created with `HTML.create_element`)
+	</releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
