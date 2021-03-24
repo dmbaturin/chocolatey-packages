@@ -9,7 +9,7 @@ $packageArgs = @{
   unzipLocation  = $toolsDir
   SpecificFolder = "soupault-$($env:ChocolateyPackageVersion)-win64"
   url64bit       = $url
-  checksum     = 'eaea079ff30d9c909748d57a6efedcad89441d3e1aefddbccc6192889e5bd3f0'
+  checksum     = 'c0210b6f6b379f954bf221a82f85ea545a507c32f21de74c8868cc97879da8b2'
   checksumType = 'sha256'
 }
 

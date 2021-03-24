@@ -3,14 +3,13 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>soupault</id>
-    <version>2.4.0</version>
+    <version>2.5.0</version>
     <packageSourceUrl>https://github.com/dmbaturin/chocolatey-packages/tree/main/soupault</packageSourceUrl>
     <owners>Daniil Baturin</owners>
     <title>soupault</title>
-    <authors>Daniil Baturin</authors>
+    <authors>Daniil Baturin and contributors</authors>
     <projectUrl>https://soupault.app</projectUrl>
     <iconUrl>https://soupault.app/images/soupault_icon.png</iconUrl>
-    <copyright>2021</copyright>
     <licenseUrl>https://github.com/dmbaturin/soupault/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectSourceUrl>https://github.com/dmbaturin/soupault</projectSourceUrl>
@@ -34,25 +33,11 @@
 	You can extend soupault with Lua plugins that offer an API similar to the DOM API of browsers.
 	</description>
     <releaseNotes>
-## New features
-
-* The `title` widget will not touch the `&lt;title&gt;` element if it's not empty, if you set `keep = true`
-* `force_indexing_path_regex` option in the `[index]` table allows to re-classify some index page as normal pages (i.e. metadata sources, not index injection targets)
-* `leaf_file` option in the `[index]` table allows to mark a directory as a "hand-made clean URL", e.g. with `leaf_file = ".leaf"` any directory that contains a file named `.leaf` will no longer be treated as a site section, but its `index.html` will be treated as a normal page, and all files within it will be treated as assets.
-
-### New plugin functions
-
-* `widget_config` alias for `config` (since now there's the global `soupault_config`, a more specific alias may be a good idea)
-* `build_dir` and `site_dir` variables in the plugin environment (PR by @hristoast)
-* `Table.get_key_default(table, key, default_value)`
-* Type checking functions in the new `Value` module: `is_int`, `is_float`, ``is_string`, `is_table`, `is_list` (table with all integer keys), `is_nil`.
-* `Sys.mkdir`, `Sys.get_file_modification_date`
-
-## Bug fixes
-
-* `include_subsection` option in the `[index]` table works correctly now (used to cause a spurious option validation error)
-* soupault no longer outputs duplicate newlines on Windows (#19, reported by @wilt00).
-* The `HTML.get_heading_level` function now works with nodes returned by `HTML.select` (rather than just values created with `HTML.create_element`)
+      * New `pretty_print_html` option for those who need to preserve original whitespace.
+      * New built-in widgets: `relative_links` and `absolute_links` for rewriting internal link targets.
+      * Soupault will no longer crash on Windows when an external program crash causes a broken pipe error.
+      * `--debug` and `settings.debug` now automatically enable exception tracing.
+      * Proper alignment of options in the `--help` output (thanks to @aantron).
 	</releaseNotes>
   </metadata>
   <files>
